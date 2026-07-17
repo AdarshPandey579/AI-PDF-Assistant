@@ -13,7 +13,10 @@ from summarizer import summarize_document, generate_final_summary
 app = FastAPI(title="PDF Summarizer")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-pdf-assistant-mu.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
