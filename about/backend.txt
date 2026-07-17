@@ -1,0 +1,7 @@
+✅ FastAPI
+✅ Upload PDF
+✅ Split into chunks
+✅ Summarize
+✅ Final summary
+✅ Return Markdown
+✅ Export Markdown

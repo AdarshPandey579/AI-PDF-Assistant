@@ -1,0 +1,8 @@
+pip install fastapi uvicorn
+pip install python-multipart : handling file uploads or HTML form data.
+pip install openai
+pip install python-dotenv
+pip install pydantic
+pip install langchain-community
+pip install langchain-text-splitters
+pip install pypdf

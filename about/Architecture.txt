@@ -1,0 +1,15 @@
+pdf_summarizer/
+│
+├── app.py                    # FastAPI/Streamlit entry point
+├── summarizer.py             # Summarization logic
+├── loader.py                 # Load PDF
+├── splitter.py               # Split into chunks
+├── prompts.py                # Summary prompts
+├── config.py
+├── requirements.txt
+│
+├── uploads/
+│      report.pdf
+│
+└── utils/
+       helper.py
