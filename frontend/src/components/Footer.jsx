@@ -8,7 +8,7 @@ function Footer() {
         </h3>
 
         <p className="mt-2 text-gray-600">
-          Built with ❤️ using React • FastAPI • Groq
+          Built with ❤️ using React • FastAPI • LLM
         </p>
 
         <p className="mt-2 text-sm text-gray-500">
