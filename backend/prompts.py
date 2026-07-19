@@ -16,10 +16,27 @@ Summarize the following text.
 Requirements:
 - Keep the summary concise.
 - Use bullet points.
-- Preserve important facts and numbers.
+- Preserve names, dates, and numbers.
 - Maximum 150 words.
 
 Text:
+{text}
+"""
+
+
+BATCH_SUMMARY_PROMPT = """
+Below are summaries from different sections of a document.
+
+Your task is to merge them into a single concise summary.
+
+Requirements:
+- Remove duplicate information.
+- Preserve important facts, names, dates, and numbers.
+- Keep the result under 300 words.
+- Use Markdown bullet points.
+
+Summaries:
+
 {text}
 """
 
@@ -37,9 +54,7 @@ Requirements:
 - Start with an Overview.
 - Include only the most important ideas.
 - Do NOT repeat information.
-- Do NOT reproduce long tables.
-- Do NOT reproduce code blocks.
-- Mention important numbers, dates, and names only when necessary.
+- Mention important numbers, dates, and names.
 - Focus on what the document is about rather than copying its content.
 
 Section Summaries:

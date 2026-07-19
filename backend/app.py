@@ -8,7 +8,7 @@ from utils.export import save_markdown
 
 from loader import load_pdf
 from chunker import split_documents
-from summarizer import summarize_document, generate_final_summary
+from summarizer import summarize_chunks, generate_final_summary
 
 app = FastAPI(title="PDF Summarizer")
 app.add_middleware(
@@ -46,7 +46,7 @@ async def summarize_pdf(file: UploadFile = File(...)):
     chunks = split_documents(documents)
     print(f"4. Created {len(chunks)} chunks")
 
-    chunk_summaries = summarize_document(chunks)
+    chunk_summaries = summarize_chunks(chunks)
     print("5. Chunks summarized")
 
     final_summary = generate_final_summary(chunk_summaries)
