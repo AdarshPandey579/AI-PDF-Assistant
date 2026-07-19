@@ -9,17 +9,34 @@ from utils.batching import batch_items
 from concurrent.futures import ThreadPoolExecutor
 
 
+from openai import RateLimitError
+import time
+
+
+def call_llm(messages, retries=5):
+    delay = 1
+    for attempt in range(retries):
+        try:
+            response = client.chat.completions.create(
+                model=MODEL,
+                messages=messages,
+            )
+            return response.choices[0].message.content
+
+        except RateLimitError:
+            if attempt == retries - 1:
+                raise
+            print(f"Rate limited. Retrying in {delay}s...")
+            time.sleep(delay)
+            delay *= 2
+
+
 def summarize_chunk(chunk):
     prompt = SUMMARY_PROMPT.format(text=chunk.page_content)
-
-    response = client.chat.completions.create(
-        model = MODEL,
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
-        ]
-    )
-    return response.choices[0].message.content
+    return call_llm([
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": prompt},
+    ])
 
 
 def summarize_chunks(chunks):
@@ -33,7 +50,6 @@ def summarize_chunks(chunks):
 def summarize_batch(batch):
     combined = "\n\n".join(batch)
     prompt = BATCH_SUMMARY_PROMPT.format(text=combined)
-
     response = client.chat.completions.create(
         model=MODEL,
         messages=[
@@ -45,19 +61,13 @@ def summarize_batch(batch):
 
 
 def generate_final_summary(chunk_summaries):
-
     if len(chunk_summaries) <= 5:
         combined_summary = "\n\n".join(chunk_summaries)
         prompt = FINAL_SUMMARY_PROMPT.format(text=combined_summary)
-
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt}
-            ]
-        )
-        return response.choices[0].message.content
+        return call_llm([
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ])
     
     batches = batch_items(chunk_summaries, batch_size=5)
     intermediate_summaries = []
@@ -67,32 +77,3 @@ def generate_final_summary(chunk_summaries):
 
     # Recursively summarize until small enough
     return generate_final_summary(intermediate_summaries)
-
-
-# Suppose you have 217 chunk summaries.
-
-# First round
-# 217 summaries
-#       │
-#       ▼
-# 22 batches (10 summaries each)
-#       │
-#       ▼
-# 22 intermediate summaries
-
-
-# Second round
-# 22 summaries
-#       │
-#       ▼
-# 3 batches
-#       │
-#       ▼
-# 3 summaries
-
-
-# Third round
-# 3 summaries
-#       │
-#       ▼
-# Final Summary
