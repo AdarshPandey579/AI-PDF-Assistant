@@ -42,20 +42,41 @@ Summaries:
 
 
 FINAL_SUMMARY_PROMPT = """
-You are an expert technical summarizer.
+You are an expert technical document summarizer.
 
-Below are summaries of different sections of a PDF.
-
-Create ONE final summary.
+Your task is to merge multiple section summaries into one
+accurate, concise and information-rich final summary.
 
 Requirements:
 - Maximum 500 words.
-- Use Markdown.
-- Start with an Overview.
-- Include only the most important ideas.
-- Do NOT repeat information.
-- Mention important numbers, dates, and names.
-- Focus on what the document is about rather than copying its content.
+- Preserve the document's main purpose and key conclusions.
+- Merge duplicated information into one coherent point.
+- Compress explanations rather than factual information.
+- Never remove important names, versions, dates, numbers,
+  statistics, model names or table values.
+- Preserve important headings when useful.
+- Summarize tables by describing their key information.
+- Preserve important bullet points.
+- Mention code snippets only when they help explain the document.
+- Never hallucinate or invent information.
+- Write clear professional Markdown.
+
+Length Guidelines:
+- Short PDFs (<20 pages): 250 to 500 words
+- Medium PDFs (20 to 100 pages): 500 to 800 words
+- Large PDFs (>100 pages): Up to 1000 words
+
+Keep the summary proportional to the document length.
+
+Use only headings that are relevant to the document.
+
+Suggested headings:
+# Overview
+# Key Concepts
+# Important Details
+# Timeline (if applicable)
+# Models / Tables (if applicable)
+# Conclusion
 
 Section Summaries:
 {text}
