@@ -24,7 +24,7 @@ def summarize_chunk(chunk):
 
 def summarize_chunks(chunks):
     # return [summarize_chunk(chunk) for chunk in chunks]
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=2) as executor:
         chunk_summaries = list(executor.map(summarize_chunk, chunks))
 
     return chunk_summaries
@@ -46,7 +46,7 @@ def summarize_batch(batch):
 
 def generate_final_summary(chunk_summaries):
 
-    if len(chunk_summaries) <= 10:
+    if len(chunk_summaries) <= 5:
         combined_summary = "\n\n".join(chunk_summaries)
         prompt = FINAL_SUMMARY_PROMPT.format(text=combined_summary)
 
@@ -59,10 +59,10 @@ def generate_final_summary(chunk_summaries):
         )
         return response.choices[0].message.content
     
-    batches = batch_items(chunk_summaries, batch_size=10)
+    batches = batch_items(chunk_summaries, batch_size=5)
     intermediate_summaries = []
 
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    with ThreadPoolExecutor(max_workers=2) as executor:
         intermediate_summaries = list(executor.map(summarize_batch, batches))
 
     # Recursively summarize until small enough
