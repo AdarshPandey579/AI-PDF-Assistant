@@ -17,7 +17,7 @@ Requirements:
 - Keep the summary concise.
 - Use bullet points.
 - Preserve names, dates, and numbers.
-- Maximum 150 words.
+- Maximum 100 words.
 
 Text:
 {text}
@@ -26,26 +26,22 @@ Text:
 
 BATCH_SUMMARY_PROMPT = """
 Below are summaries from different sections of a document.
-
 Your task is to merge them into a single concise summary.
 
 Requirements:
 - Remove duplicate information.
 - Preserve important facts, names, dates, and numbers.
-- Keep the result under 300 words.
+- Keep the result under 200 words.
 - Use Markdown bullet points.
 
 Summaries:
-
 {text}
 """
 
 
 FINAL_SUMMARY_PROMPT = """
 You are an expert technical document summarizer.
-
-Your task is to merge multiple section summaries into one
-accurate, concise and information-rich final summary.
+Your task is to merge multiple section summaries into one accurate, concise and information-rich final summary.
 
 Requirements:
 - Maximum 500 words.
@@ -61,15 +57,7 @@ Requirements:
 - Never hallucinate or invent information.
 - Write clear professional Markdown.
 
-Length Guidelines:
-- Short PDFs (<20 pages): 250 to 500 words
-- Medium PDFs (20 to 100 pages): 500 to 800 words
-- Large PDFs (>100 pages): Up to 1000 words
-
-Keep the summary proportional to the document length.
-
 Use only headings that are relevant to the document.
-
 Suggested headings:
 # Overview
 # Key Concepts
