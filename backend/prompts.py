@@ -14,10 +14,15 @@ SUMMARY_PROMPT = """
 Summarize the following text.
 
 Requirements:
-- Keep the summary concise.
-- Use bullet points.
-- Preserve names, dates, and numbers.
-- Maximum 100 words.
+- Summarize the main ideas and important information in this section.
+- Keep only information essential to understanding this section.
+- Remove repeated information.
+- Omit boilerplate text, legal notices, contact information, navigation text, advertisements, and standard policies unless they are central to this section.
+- Preserve names, dates, numbers, values, and other facts only when they are important to the meaning.
+- If this section lacks sufficient context, summarize only what is explicitly stated without making assumptions about the rest of the document.
+- Never invent information.
+- Maximum 150 words.
+- Use concise Markdown bullet points.
 
 Text:
 {text}
@@ -40,31 +45,19 @@ Summaries:
 
 
 FINAL_SUMMARY_PROMPT = """
-You are an expert technical document summarizer.
-Your task is to merge multiple section summaries into one accurate, concise and information-rich final summary.
+Merge the section summaries into one clear, concise, and coherent final summary.
 
 Requirements:
-- Maximum 500 words.
-- Preserve the document's main purpose and key conclusions.
-- Merge duplicated information into one coherent point.
-- Compress explanations rather than factual information.
-- Never remove important names, versions, dates, numbers,
-  statistics, model names or table values.
-- Preserve important headings when useful.
-- Summarize tables by describing their key information.
-- Preserve important bullet points.
-- Mention code snippets only when they help explain the document.
-- Never hallucinate or invent information.
-- Write clear professional Markdown.
-
-Use only headings that are relevant to the document.
-Suggested headings:
-# Overview
-# Key Concepts
-# Important Details
-# Timeline (if applicable)
-# Models / Tables (if applicable)
-# Conclusion
+- Begin with a brief overview of what the document is about.
+- Remove duplicate or repeated information.
+- Keep only information that is essential to understand or use the document.
+- Preserve key facts, names, dates, figures, conclusions, and other important details when they contribute to the document's meaning.
+- Ignore repeated headers, footers, page numbers, legal notices, disclaimers, contact information, navigation text, advertisements, and other boilerplate unless they are central to the document.
+- For structured documents (such as tickets, invoices, receipts, certificates, or forms), summarize the key fields instead of rewriting all content.
+- Use headings only when they naturally improve readability.
+- Use concise Markdown.
+- Maximum 250 words.
+- Never invent or infer information that is not present.
 
 Section Summaries:
 {text}
