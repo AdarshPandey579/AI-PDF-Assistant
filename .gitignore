@@ -1,6 +1,8 @@
 # Python
 backend/.venv/
 backend/__pycache__/
+backend/pdf_summarizer/__pycache__/
+backend/rag/__pycache__/
 backend/uploads/
 backend/exports/
 backend/.env
