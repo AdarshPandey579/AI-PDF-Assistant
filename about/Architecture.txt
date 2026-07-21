@@ -13,3 +13,25 @@ pdf_summarizer/
 │
 └── utils/
        helper.py
+
+
+
+
+
+backend/
+│
+├── app.py
+├── summarizer.py
+├── loader.py
+│
+├── rag/
+│   ├── loader.py
+│   ├── splitter.py
+│   ├── embeddings.py
+│   ├── vector_store.py
+│   ├── retriever.py
+│   ├── chain.py
+│   ├── prompts.py
+│   └── utils.py
+│
+└── uploads/

@@ -1,6 +1,0 @@
-✅ Parallel summarization with ThreadPoolExecutor
-✅ Hierarchical summarization
-✅ Smart prompt engineering
-✅ Progress indicator
-✅ Summary styles (Brief, Detailed, Executive)
-✅ Download summary as Markdown/PDF

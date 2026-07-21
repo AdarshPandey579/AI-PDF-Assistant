@@ -1,49 +1,9 @@
 Phase 1
-│
-├── Project Setup
-│
+-PDF summarizer(backend)
+-PDF summarizer(frontend)
+-Deploy 
+
 Phase 2
-│
-├── PDF Upload
-├── Text Extraction
-└── Chunking
-│
-Phase 3
-│
-├── Chunk Summaries
-├── Merge Summaries
-└── Final Summary
-│
-Phase 4
-│
-├── Bullet Summary
-├── Executive Summary
-├── FAQ
-├── Flashcards
-├── Keywords
-└── Action Items
-│
-Phase 5
-│
-├── Upload UI
-├── Summary Viewer
-└── Loading Indicators
-│
-Phase 6
-│
-├── Download Markdown
-├── Download PDF
-└── Download DOCX
-│
-Phase 7
-│
-├── Large PDF Support
-├── Streaming
-├── Background Jobs
-└── Better Error Handling
-│
-Phase 8
-│
-├── Docker
-├── Deployment
-└── Documentation
+-Multi pdf rag chatbot(backend)
+-Multi pdf rag chatbot(frontend)
+-Deploy

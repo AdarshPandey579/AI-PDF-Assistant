@@ -1,0 +1,18 @@
+User Question
+      │
+      ▼
+RunnableParallel
+ ├── Retriever
+ └── RunnablePassthrough
+      │
+      ▼
+PromptTemplate
+      │
+      ▼
+ChatGroq
+      │
+      ▼
+StrOutputParser
+      │
+      ▼
+Final Answer

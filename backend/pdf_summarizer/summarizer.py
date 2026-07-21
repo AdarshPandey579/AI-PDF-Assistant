@@ -1,5 +1,5 @@
 from config import client, MODEL
-from prompts import (
+from .prompts import (
     SYSTEM_PROMPT,
     SUMMARY_PROMPT,
     BATCH_SUMMARY_PROMPT,

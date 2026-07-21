@@ -6,9 +6,9 @@ from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from utils.export import save_markdown
 
-from loader import load_pdf
-from chunker import split_documents
-from summarizer import summarize_chunks, generate_final_summary
+from pdf_summarizer.loader import load_pdf
+from pdf_summarizer.chunker import split_documents
+from pdf_summarizer.summarizer import summarize_chunks, generate_final_summary
 
 app = FastAPI(title="PDF Summarizer")
 app.add_middleware(

@@ -1,0 +1,7 @@
+✅ Multiple PDF upload
+✅ Vector embeddings
+✅ Qdrant storage
+✅ Semantic search
+✅ Context-aware answers
+✅ Source document names
+✅ Delete uploaded PDFs after indexing

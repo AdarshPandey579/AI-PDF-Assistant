@@ -1,7 +1,9 @@
 ✅ FastAPI
 ✅ Upload PDF
+✅ Smart prompt engineering
 ✅ Split into chunks
-✅ Summarize
+✅ Parallel summarization with ThreadPoolExecutor
+✅ Hierarchical summarization
 ✅ Final summary
 ✅ Return Markdown
 ✅ Export Markdown
