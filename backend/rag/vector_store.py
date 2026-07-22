@@ -10,8 +10,10 @@ client = QdrantClient(
     port=6333,
 )
 
-# Create collection only once
-if not client.collection_exists(COLLECTION_NAME):
+def recreate_collection():
+    if client.collection_exists(COLLECTION_NAME):
+        client.delete_collection(COLLECTION_NAME)
+
     client.create_collection(
         collection_name=COLLECTION_NAME,
         vectors_config=VectorParams(

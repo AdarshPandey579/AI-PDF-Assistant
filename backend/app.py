@@ -12,7 +12,7 @@ from utils.export import save_markdown
 
 from rag.loader import load_documents
 from rag.splitter import split_documents
-from rag.vector_store import add_documents
+from rag.vector_store import add_documents , recreate_collection
 from rag.chain import chain
 from pydantic import BaseModel
 
@@ -95,6 +95,8 @@ async def upload_pdfs(files: list[UploadFile] = File(...)):
     documents = load_documents(pdf_paths)
 
     chunks = split_documents(documents)
+
+    recreate_collection()
 
     add_documents(chunks)
 

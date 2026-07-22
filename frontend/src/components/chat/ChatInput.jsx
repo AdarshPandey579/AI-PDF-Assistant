@@ -13,9 +13,11 @@ function ChatInput({ setMessages }) {
   }
 
   return (
-    <div className="flex gap-4">
+    <div>
 
-      <form onSubmit={(e)=>{e.preventDefault(); handleSend()}}>
+      <form onSubmit={(e)=>{e.preventDefault(); handleSend()}}
+        className="flex gap-4"
+        >
         <input
           type="text"
           placeholder="Ask something..."
