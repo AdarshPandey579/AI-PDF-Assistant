@@ -1,7 +1,7 @@
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance
-from embeddings import embedding_model
+from .embeddings import embedding_model
 
 COLLECTION_NAME = "pdf_rag"
 

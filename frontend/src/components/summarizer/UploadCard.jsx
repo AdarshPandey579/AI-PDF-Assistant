@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import api from "../services/api.js";
+import api from "../../services/api.js";
 // import { FiUploadCloud } from "react-icons/fi";
 
 function UploadCard({ setSummary, loading, setLoading}) {

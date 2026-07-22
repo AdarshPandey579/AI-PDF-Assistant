@@ -1,5 +1,5 @@
-from retriever import retriever
-from prompts import PROMPT
+from .retriever import retriever
+from .prompts import PROMPT
 
 import os
 from dotenv import load_dotenv
@@ -17,23 +17,28 @@ prompt = PromptTemplate(
 )
 
 
-retriever = retriever
+pdf_retriever = retriever
 model = ChatGroq(model= "llama-3.3-70b-versatile",api_key=os.getenv("GROQ_API_KEY"),temperature=0)
 parser = StrOutputParser()
 
 def format_docs(docs):
     return "\n\n".join(
-        f"Source: {doc.metadata.get('file_name', 'Unknown')}\n{doc.page_content}"
+        f"Source: {doc.metadata.get('file_name', 'Unknown')}\nPage: {doc.metadata.get("page")}\n\n{doc.page_content}"
         for doc in docs
     )
 
-parllel_chain = RunnableParallel({
-    "context" : retriever | RunnableLambda(format_docs),
+parallel_chain = RunnableParallel({
+    "context" : pdf_retriever | RunnableLambda(format_docs),
     "question" : RunnablePassthrough()
 })
 
-chain = parllel_chain | prompt | model | parser
+chain = parallel_chain | prompt | model | parser
 
+# while True:
+#     query = input("INPUT: ")
+#     if query == "exit": break
+#     response = chain.invoke(query)
+#     print(response)
 
 # response = chain.invoke("What is Deep Learning?")
 # print(response)
